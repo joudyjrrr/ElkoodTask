@@ -34,8 +34,17 @@ export default {
             this.form
           );
           this.$toast.success("Reservation has been added successfully", {});
-          document.querySelector(".uk-button").classList.add("uk-close");
           this.filterPatients.push(data);
+          const modal = document.getElementById("my-id");
+          UIkit.modal(modal).hide();
+          this.form = {
+            name: "",
+            Phone: "",
+            blood: "",
+            type: "Prior",
+            date: "",
+          };
+          this.valid = false;
         } catch (error) {
           console.error(error);
         }
@@ -58,7 +67,6 @@ export default {
     dateIsFutureValid() {
       const selectedDate = new Date(this.form.date);
       const currentDate = new Date();
-
       return selectedDate >= currentDate;
     },
   },
@@ -103,7 +111,9 @@ export default {
               aria-label="Name"
             />
             <p v-if="valid && !dateIsValid">Please Enter Date Valid</p>
-            <p v-if="valid && !dateIsFutureValid">Please enter the login date today's date</p>
+            <p v-if="valid && !dateIsFutureValid && dateIsValid">
+              Please enter the login date today's date
+            </p>
           </div>
           <div class="uk-margin">
             <label>Choose BloodType</label>

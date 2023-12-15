@@ -2,14 +2,13 @@
 import axios from "axios";
 import InfoModal from "./InfoModal.vue";
 import AddModal from "./AddModal.vue";
-import RingLoader from "vue-spinner/src/RingLoader.vue";
+
 
 export default {
   name: "Table",
   components: {
     InfoModal,
     AddModal,
-    RingLoader,
   },
   data() {
     return {
